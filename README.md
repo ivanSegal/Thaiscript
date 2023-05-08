@@ -8,15 +8,24 @@ Mediante el servicio web nuestros clientes podrán consultar la carta, ver los i
 Animete, a vivir la experiencia.
 Te esperamos.
                                                                                                                                 Thaiscript
+
 Público objetivo:
+
 Jóvenes adultos: 20-40 años
+
 Adultos: 40+ años
+
 Familas que quieran introducir nuevos sabores.
 
 Participantes:
+
 Álvaro Sanchez
+
 Nahuel Mémoli
+
 Nicolás Sosa
+
 Damián Mora
+
 Iván Segal
 
