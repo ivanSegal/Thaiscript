@@ -7,7 +7,9 @@
       "ingredientes":["Huevo","Chile","Mango"],
       "thumbnailUrl": "./img/ta3.png",
       "idd":"tt",
-      "target":"#tt"
+      "target":"#tt",
+      "principal":true
+      
       
     },
     {
@@ -18,7 +20,9 @@
         "ingredientes":["Huevo","Chile","Mango"],
         "thumbnailUrl": "./img/ta1.png",
         "idd":"ts",
-        "target":"#ts"
+        "target":"#ts",
+        "principal":false
+        
         
     },
     {
@@ -29,7 +33,8 @@
         "ingredientes":["Huevo","Chile","Mango"],
         "thumbnailUrl": "./img/ta2.png",
         "idd":"tg",
-      "target":"#tg"
+      "target":"#tg",
+      "principal":true
         
     },
     {
@@ -40,7 +45,8 @@
         "ingredientes":["Huevo","Chile","Mango"],
         "thumbnailUrl": "./img/ta4.png",
         "idd":"tc",
-      "target":"#tc"
+      "target":"#tc",
+      "principal":false
         
     },
     {
@@ -51,7 +57,8 @@
         "ingredientes":["Huevo","Chile","Mango"],
         "thumbnailUrl": "./img/ta5.png",
         "idd":"th",
-      "target":"#th"
+      "target":"#th",
+      "principal":true
         
     },
     {
@@ -62,7 +69,8 @@
         "ingredientes":["Huevo","Chile","Mango"],
         "thumbnailUrl": "./img/ta6.png",
         "idd":"ttt",
-      "target":"#ttt"
+      "target":"#ttt",
+      "principal":false
         
     }
   ]
