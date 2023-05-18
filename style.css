@@ -14,4 +14,20 @@
 }
 a:link, a:visited, a:active{
     text-decoration: none;
+    color: #323230;
+}
+.btn{
+    color: #ffd632;
+}
+#contenedor-productos{
+    list-style: none;
+}
+.filtro{
+    display: none;
+}
+.corteprin{
+    width: 100%;
+    height: 80px;
+    background-color: #ffd632;
+    margin-top: 20px;
 }

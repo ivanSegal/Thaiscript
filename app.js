@@ -66,13 +66,13 @@ botGuar.addEventListener("click",()=>{
 
 
 
-//Pintar la pagina principal principal
+//Pintar la pagina principal principal y guarnicion
 
 const contenedorProo = document.querySelector("#contenedor-principal");
 const contenedorGua = document.querySelector("#contenedor-guarnicion");
 
 const pintarSele = data1 =>{
-    const template = document.querySelector("#template-productos").content;
+    const template = document.querySelector("#template-vert").content;
     const fragment = document.createDocumentFragment();
     const fragmentGua = document.createDocumentFragment();
     //recorrer arreglo de objetos
@@ -117,5 +117,16 @@ const pintarSele = data1 =>{
     contenedorGua.appendChild(fragmentGua)
 }
 
+//buscador
 
+document.addEventListener('keyup', e =>{
+    if(e.target.matches('#buscador')){
+        document.querySelectorAll('.articulo').forEach(plato =>{
+            plato.textContent.toLowerCase().includes(e.target.value)
+            ? plato.classList.remove('filtro')
+            : plato.classList.add('filtro');
+
+        })
+    }
+})
 

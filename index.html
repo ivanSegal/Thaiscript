@@ -13,25 +13,41 @@
 
 <body>
   <!----Navbar-----navbar-dark bg-dark--->
-  <nav class="navbar fixed-top" style="background-color: #ffd632;">
-    <div class="container">
+  <nav class="navbar fixed-top" style="background-color: #ffd632; padding: 10px;">
+    <div class="container-fluid">
       <h1 class="text" style="color: #323230;">Thaiscript </h1>
-
-      <button class="botCarrito bg-dark">🛒<span id="contador" class="numCarrito"></span></button>
-
+      <div class="row">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" id="buscador" />
+          <button type="button" class="btn btn-outline-primary">search</button>
+        </div>
+      </div>
+      <div class="row">
+          <button class="botCarrito bg-dark">🛒<span id="contador" class="numCarrito"></span></button>
+      </div>
+      
     </div>
+
   </nav>
 
 
 
 
+
+  <!----Menù para elegir por categorías------->
+
   <div class="container text-center">
     <header style="margin-top: 80px; color: #323230;">
-      <h1>Hola Pedidos</h1>
+      <h1 id="menu">Menú</h1>
       <div class="row">
-        <div class="col-4"><button class="btn btn-info" id="todo">Todo</button><button class="btn btn-info"
-            id="principal"><a href="#contenedor-principal" >Pricipal</a> </button><button class="btn btn-info" id="guarnicion"> <a href="#contenedor-guarnicion">Guarnición</a> </button></div>
 
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button class="btn btn-outline-warning" id="todo"><a href="#">Todo</a> </button>
+          <button class="btn btn-outline-warning" id="principal"><a href="#corteP">Pricipal</a> </button>
+          <button class="btn btn-outline-warning" id="guarnicion"> <a href="#contenedor-guarnicion">Guarnición</a>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -39,12 +55,18 @@
 
 
     <!---Contenedor------>
-    <div class="row mt-3" id="contenedor-productos">
+    <div class="row mt-3">
+      <ul id="contenedor-productos">
 
+      </ul>
     </div>
 
     <!--------------->
+    <div class="container" id="corteP" >
+      <div class="corteprin">
 
+      </div>
+    </div>
     <!----Principal------>
     <div class="row mt-3" id="contenedor-principal">
       <h2>Platos principales</h2>
@@ -59,47 +81,123 @@
     <!--------------------->
     <!---------Cardsss----------->
     <template id="template-productos">
-      <div class="card mt-3">
-        <div class="col-12  mt-3">
-          <div class="row g-0">
-            <div class="col-4">
-              <img src="" class="card-img-top my-3" alt="...">
-            </div>
-            <div class="col-8">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-4">
-                    <h5 class="card-title">Producto</h5>
-                  </div>
-                  <div class="col-4">
-                    <p class="card-text">$<span></span></p>
-                  </div>
-                  <div class="col-4"> <button href="#" class="btn btn-dark">Comprar</button></div>
-                </div>
 
-                <div class="row">
-                  <div class="container text-center">
-                    <button class="colbu" data-bs-toggle="collapse" data-bs-target="">Detalles</button>
+      <div class="col-12  mb-3">
+        <li class="articulo">
+          <div class="card mt-3">
+            <div class="row">
+              <div class="col-3">
+                <img src="" class="card-img-top my-3" alt="...">
+              </div>
+              <div class="col">
+                <div class="card-body">
+                  <div class="row ">
+                    <div class="col">
+                      <h5 class="card-title">Producto</h5>
+                    </div>
 
-                    <div id="" class="collapse">
-                      <p class="parra"></p>
-                      <p class="ingr"></p>
+
+                  </div>
+                  <div class="row my-3">
+                    <div class=" col-6">
+                      <button href="#" class="btn btn-dark">Comprar</button>
+                    </div>
+                    <div class="col-6">
+                      <p class="card-text">$<span></span></p>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="container text-end">
+                      <button class="colbu" data-bs-toggle="collapse" data-bs-target="">+</button>
+
+                      <div id="" class="collapse">
+                        <p class="parra"></p>
+                        <p class="ingr"></p>
+                      </div>
+
                     </div>
 
                   </div>
                 </div>
+
               </div>
+
+
+
+
+
             </div>
           </div>
-        </div>
+        </li>
+
       </div>
     </template>
+
+
+    <!---Cards vertical-->
+
+    <template id="template-vert">
+
+      <div class="col-12 col-md-4 mb-3">
+
+        <div class="card mt-3">
+          <div class="row">
+
+            <img src="" class="card-img-top my-3" alt="...">
+
+
+            <div class="card-body">
+              <div class="row ">
+                <div class="col">
+                  <h5 class="card-title">Producto</h5>
+                </div>
+
+
+              </div>
+              <div class="row my-3">
+                <div class=" col-6">
+                  <button href="#" class="btn btn-dark">Comprar</button>
+                </div>
+                <div class="col-6">
+                  <p class="card-text">$<span></span></p>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="container text-end">
+                  <button class="colbu" data-bs-toggle="collapse" data-bs-target="">+</button>
+
+                  <div id="" class="collapse">
+                    <p class="parra"></p>
+                    <p class="ingr"></p>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </template>
+
+
+
+
+
+
   </div>
-  
 
 
 
-  
+
+
 
 
 
@@ -111,35 +209,40 @@
   <!-- Footer -->
   <footer class="text-center text-lg-start bg-light text-muted">
     <!-- Section: Social media -->
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-      <!-- Left -->
-      <div class="me-5 d-none d-lg-block">
-        <span>Get connected with us on social networks:</span>
+    <div class="me-5 d-none d-lg-block ">
+      <div class="container text-center mt-5">
+        <button><a href="#menu">Inicio</a></button>
       </div>
-      <!-- Left -->
 
-      <!-- Right -->
-      <div>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-      <!-- Right -->
+      <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <!-- Left -->
+
+
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
     </section>
     <!-- Section: Social media -->
 
@@ -225,7 +328,7 @@
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
       © 2021 Copyright:
-      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Thaiscript.com</a>
     </div>
     <!-- Copyright -->
   </footer>
