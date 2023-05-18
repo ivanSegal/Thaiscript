@@ -13,9 +13,10 @@
 
 <body>
   <!----Navbar-----navbar-dark bg-dark--->
-  <nav class="navbar fixed-top" style="background-color: #ffd632; padding: 10px;">
-    <div class="container-fluid">
-      <h1 class="text" style="color: #323230;">Thaiscript </h1>
+  <nav class="navbar fixed-top" style="background-color: #ffd632; padding: 10px;" >
+    <div class="container-fluid" >
+      <img src="./img/ts.png" class="img-ca " width="120" height="60">
+      <!-- <h1 class="text" style="color: #323230;" >Thaiscript </h1> -->
       <div class="row">
         <div class="input-group">
           <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
@@ -30,26 +31,27 @@
     </div>
 
   </nav>
-
-
+ 
+  
 
 
 
   <!----Menù para elegir por categorías------->
+  <header style="margin-top: 80px; color: #323230;">
+    <div class="row">
+    
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button class="btn btn-outline-warning" id="todo"><a href="#">Todo</a> </button>
+        <button class="btn btn-outline-warning" id="principal"><a href="#corteP">Pricipal</a> </button>
+        <button class="btn btn-outline-warning" id="guarnicion"> <a href="#corteG">Guarnición</a>
+        </button>
+      </div>
+    </div>
+  
+  </header>
 
   <div class="container text-center">
-    <header style="margin-top: 80px; color: #323230;">
-      <h1 id="menu">Menú</h1>
-      <div class="row">
-
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button class="btn btn-outline-warning" id="todo"><a href="#">Todo</a> </button>
-          <button class="btn btn-outline-warning" id="principal"><a href="#corteP">Pricipal</a> </button>
-          <button class="btn btn-outline-warning" id="guarnicion"> <a href="#contenedor-guarnicion">Guarnición</a>
-          </button>
-        </div>
-      </div>
-    </header>
+    <h1 id="nav">Menú</h1>
 
 
 
@@ -61,7 +63,7 @@
       </ul>
     </div>
 
-    <!--------------->
+    <!-------Deco principal-------->
     <div class="container" id="corteP" >
       <div class="corteprin">
 
@@ -72,7 +74,11 @@
       <h2>Platos principales</h2>
     </div>
 
+    <div class="container" id="corteG" >
+      <div class="corteguar">
 
+      </div>
+    </div>
     <!------------------->
     <!------Guarnición---------->
     <div class="row mt-3" id="contenedor-guarnicion">
@@ -211,7 +217,7 @@
     <!-- Section: Social media -->
     <div class="me-5 d-none d-lg-block ">
       <div class="container text-center mt-5">
-        <button><a href="#menu">Inicio</a></button>
+        <button><a href="#nav">Inicio</a></button>
       </div>
 
       <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">

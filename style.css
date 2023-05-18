@@ -25,9 +25,11 @@ a:link, a:visited, a:active{
 .filtro{
     display: none;
 }
-.corteprin{
+.corteprin, .corteguar{
     width: 100%;
     height: 80px;
     background-color: #ffd632;
     margin-top: 20px;
+    background-image: url("./img/thaiscript.png");
 }
+
