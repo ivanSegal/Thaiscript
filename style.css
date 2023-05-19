@@ -1,4 +1,12 @@
-
+html{
+    box-sizing: border-box;
+    /*1rem = 10px*/
+   
+}
+body{
+    
+    overflow-x: hidden;
+}
 .header{
     display: flex;
     max-width: 100%;
@@ -33,3 +41,8 @@ a:link, a:visited, a:active{
     background-image: url("./img/thaiscript.png");
 }
 
+.carousel > img{
+    object-fit: scale-down;
+    height: 50vh;
+    width: 100%;
+}

@@ -47,74 +47,87 @@ const pintar = data =>{
     contenedorPro.appendChild(fragment)
 }
 
+
 //Botones menu platos
+
+let tipo = 3;
 const botTodo = document.querySelector("#todo")
 botTodo.addEventListener("click",()=>{
-    console.log("Todo")
+    limpiarHtml(contenedorPro);
+    pintar(data1);
 })
 
 const botPri = document.querySelector("#principal")
+
 botPri.addEventListener("click",()=>{
-    //console.log("principal")
-    
+    limpiarHtml(contenedorPro);
+    tipo = 1;
+    pintarSele(data1) 
 })
 
 const botGuar = document.querySelector("#guarnicion")
 botGuar.addEventListener("click",()=>{
-    console.log("Guarnición")
+    limpiarHtml(contenedorPro);
+    tipo = 2;
+    pintarSele(data1)
 })
 
 
 
 //Pintar la pagina principal principal y guarnicion
 
-const contenedorProo = document.querySelector("#contenedor-principal");
-const contenedorGua = document.querySelector("#contenedor-guarnicion");
 
 const pintarSele = data1 =>{
-    const template = document.querySelector("#template-vert").content;
+    const template = document.querySelector("#template-productos").content;
     const fragment = document.createDocumentFragment();
-    const fragmentGua = document.createDocumentFragment();
+    
     //recorrer arreglo de objetos
-    console.log(data1)
-    data1.forEach(element => {
-        if(element.principal == true){
-            template.querySelector("img").setAttribute("src",element.thumbnailUrl);
-            template.querySelector("h5").textContent = element.nombre;
-            template.querySelector("span").textContent = element.precio;
-            template.querySelector("button").dataset.id = element.id;
+    if(tipo == 1){
+        data1.forEach(element => {
+            if(element.principal == true){
+                template.querySelector("img").setAttribute("src",element.thumbnailUrl);
+                template.querySelector("h5").textContent = element.nombre;
+                template.querySelector("span").textContent = element.precio;
+                template.querySelector("button").dataset.id = element.id;
+        
+                template.querySelector(".parra").textContent = element.decripcion;
+                template.querySelector(".ingr").textContent = element.ingredientes;
+        
+                template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
+                template.querySelector(".collapse").setAttribute("id",element.idd)
+        
+                
+                const clone = template.cloneNode(true)
+        
+                fragment.appendChild(clone)} 
+        });
+        contenedorPro.appendChild(fragment)
+    } else if (tipo == 2){
+        console.log("guar")
+        data1.forEach(element => {
+            if(element.principal != true){
+                template.querySelector("img").setAttribute("src",element.thumbnailUrl);
+                template.querySelector("h5").textContent = element.nombre;
+                template.querySelector("span").textContent = element.precio;
+                template.querySelector("button").dataset.id = element.id;
+        
+                template.querySelector(".parra").textContent = element.decripcion;
+                template.querySelector(".ingr").textContent = element.ingredientes;
+        
+                template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
+                template.querySelector(".collapse").setAttribute("id",element.idd)
+        
+                
+                const clone = template.cloneNode(true)
+        
+                fragment.appendChild(clone)} 
+        });
+
+        contenedorPro.appendChild(fragment)
+    }
     
-            template.querySelector(".parra").textContent = element.decripcion;
-            template.querySelector(".ingr").textContent = element.ingredientes;
     
-            template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
-            template.querySelector(".collapse").setAttribute("id",element.idd)
     
-            
-            const clone = template.cloneNode(true)
-    
-            fragment.appendChild(clone)
-        } else{
-            template.querySelector("img").setAttribute("src",element.thumbnailUrl);
-            template.querySelector("h5").textContent = element.nombre;
-            template.querySelector("span").textContent = element.precio;
-            template.querySelector("button").dataset.id = element.id;
-    
-            template.querySelector(".parra").textContent = element.decripcion;
-            template.querySelector(".ingr").textContent = element.ingredientes;
-    
-            template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
-            template.querySelector(".collapse").setAttribute("id",element.idd)
-    
-            
-            const clone = template.cloneNode(true)
-    
-            fragmentGua.appendChild(clone)
-        }
-       
-    });
-    contenedorProo.appendChild(fragment)
-    contenedorGua.appendChild(fragmentGua)
 }
 
 //buscador
@@ -129,4 +142,11 @@ document.addEventListener('keyup', e =>{
         })
     }
 })
+
+//limpiar pantalla
+const limpiarHtml = (contenedor) =>{
+    while(contenedor.firstChild){
+        contenedor.removeChild(contenedor.firstChild);
+    }
+}
 
