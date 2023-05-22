@@ -27,6 +27,10 @@ a:link, a:visited, a:active{
 .btn{
     color: #ffd632;
 }
+.colbu{
+    border-radius: 15px;
+    
+}
 #contenedor-productos{
     list-style: none;
 }

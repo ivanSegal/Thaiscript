@@ -49,12 +49,13 @@ const pintar = data =>{
 
 
 //Botones menu platos
-
+const menu = document.querySelector(".menuCambio");
 let tipo = 3;
 const botTodo = document.querySelector("#todo")
 botTodo.addEventListener("click",()=>{
     limpiarHtml(contenedorPro);
     pintar(data1);
+    menu.innerHTML = "Completo"
 })
 
 const botPri = document.querySelector("#principal")
@@ -62,7 +63,9 @@ const botPri = document.querySelector("#principal")
 botPri.addEventListener("click",()=>{
     limpiarHtml(contenedorPro);
     tipo = 1;
-    pintarSele(data1) 
+    pintarSele(data1);
+    menu.innerHTML = "Principal"
+
 })
 
 const botGuar = document.querySelector("#guarnicion")
@@ -70,6 +73,7 @@ botGuar.addEventListener("click",()=>{
     limpiarHtml(contenedorPro);
     tipo = 2;
     pintarSele(data1)
+    menu.innerHTML = "Guarniciones"
 })
 
 
@@ -103,7 +107,7 @@ const pintarSele = data1 =>{
         });
         contenedorPro.appendChild(fragment)
     } else if (tipo == 2){
-        console.log("guar")
+        
         data1.forEach(element => {
             if(element.principal != true){
                 template.querySelector("img").setAttribute("src",element.thumbnailUrl);
