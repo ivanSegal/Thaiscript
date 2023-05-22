@@ -150,3 +150,90 @@ const limpiarHtml = (contenedor) =>{
     }
 }
 
+
+//Mostrar carrito
+const mostCarro = document.querySelector(".botCarrito")
+const vistaCarro = document.querySelector(".carrito")
+var mostrandoCarro = false
+mostCarro.addEventListener("click",()=>{
+    if (mostrandoCarro == false) {
+        vistaCarro.style.display = "flex"
+        mostrandoCarro = true
+    }
+    else {
+        vistaCarro.style.display = "none"
+        mostrandoCarro = false
+    }
+    
+})
+
+
+//Cerrar carrito
+const butCerrar = document.querySelector(".butonCerrar")
+butCerrar.addEventListener("click",()=>{
+    vistaCarro.style.display = "none"
+})
+
+
+//Cuando el usuario clickea un botón, se guarda el id del elemento clickeado
+let arrayCarrito = [];
+function agregarElemento(id) {
+    arrayCarrito.push(id)
+    console.log(arrayCarrito)
+    dibujarElementoCarrito(arrayCarrito)
+}
+
+
+//
+function dibujarElementoCarrito(arrayCarrito) {
+    let carritoLength = arrayCarrito.length
+
+//
+let datosProductos = {};
+fetch("comidas.json")
+    .then(function(resp) {
+        return resp.json();
+    })
+    .then(function(data) {
+        datosProductos = data;
+        mostrarObj()
+    });
+
+//
+let mostrarObj = function() {
+    for (let prop in datosProductos) {
+        for(let i = 0; i < 6; i++) {
+            datosProductos[i].cantidad = 0
+        }
+        console.log(datosProductos)
+        dibujo()
+    }
+}
+
+//
+function dibujo() {
+    let totalPrecio = 0
+    for(let i = 0; i < carritoLength; i++) { //for para recorrer arrayCarrito
+        for(let j =  0; j < 6; j++) { //for para recorrer datosProductos
+            if (arrayCarrito[i] == datosProductos[j].id) {
+                datosProductos[j].cantidad++
+                totalPrecio = totalPrecio + datosProductos[j].precio
+                document.getElementById("footer").innerHTML = 
+                '<table>' +
+                    '<tr>' +
+                        // '<img src="'+ datosProductos[i].thumbnailUrl + '>' +
+                        '<td>' + datosProductos[j].nombre + '</td>' +
+                        '<td>' + datosProductos[j].cantidad + '</td>' +
+                        '<td>Placeholder</td>' +
+                        '<td>'+ totalPrecio + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                        '<td> Hi </td>' +
+                    '</tr>' +
+                '</table>';
+            }
+        }
+    }
+}
+
+}
