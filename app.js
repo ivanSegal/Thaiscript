@@ -1,4 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema de Pedidos</title>
+</head>
+<body>
+  <h1>Sistema de Pedidos</h1>
 
+  <div id="loginScreen">
+    <h2>Pantalla de Ingreso</h2>
+    <!-- Formulario de ingreso -->
+    <form id="loginForm">
+      <!-- Campos de ingreso -->
+      <input type="text" id="username" placeholder="Usuario" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+
+  <div id="orderScreen" style="display: none;">
+    <h2>Pantalla de Pedido</h2>
+    <!-- Formulario de pedido -->
+    <form id="orderForm">
+      <h3>Forma de entrega</h3>
+      <input type="radio" name="deliveryOption" value="local" required> Retiro en local
+      <input type="radio" name="deliveryOption" value="domicilio" required> Envío a domicilio
+
+      <h3>Datos de envío</h3>
+      <input type="text" id="address" placeholder="Dirección">
+      <input type="text" id="phone" placeholder="Teléfono">
+
+      <h3>Forma de pago</h3>
+      <input type="radio" name="paymentOption" value="efectivo" required> Efectivo
+      <input type="radio" name="paymentOption" value="mercadoPago" required> Mercado Pago
+
+      <button type="submit">Confirmar Pedido</button>
+    </form>
+  </div>
+
+  <div id="orderSummary" style="display: none;">
+    <h2>Resumen del Pedido</h2>
+    <div id="items"></div>
+    <div id="deliveryInfo"></div>
+    <div id="paymentInfo"></div>
+    <div id="orderTotal"></div>
+    <button id="confirmOrder">Confirmar Pedido</button>
+  </div>
+
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Verificar si el usuario ha ingresado
       var isLoggedIn = false; // Variable para simular el estado de inicio de sesión
@@ -66,7 +114,7 @@
       return maxItemTime + maxCookingTime + (deliveryTime * (document.querySelector('input[name="deliveryOption"]:checked').value === "domicilio" ? 1 : 0));
     }
 
-    
+    // Resto de las funciones a implementar
 
     function updateStock() {
       // Implementar la lógica para descontar del stock de ingredientes
@@ -79,3 +127,6 @@
     function makeMercadoPagoPayment() {
       // Implementar la lógica para realizar el pago con Mercado Pago
     }
+  </script>
+</body>
+</html>
