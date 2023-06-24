@@ -1,132 +1,212 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Sistema de Pedidos</title>
-</head>
-<body>
-  <h1>Sistema de Pedidos</h1>
+//Espere que el DOM sea cargadoo
+document.addEventListener('DOMContentLoaded',e =>{
+  fetchData();
+})
+let data1
+const fetchData = async () =>{
+  try {
+      const resp = await fetch("comidas.json");
+      const data = await resp.json();
+      
+      pintar(data)
+      data1=data
+      pintarSele(data1)
+      fecha()
+      asignarBotones(data)
+      
+  } catch (error) {
+      console.log(error)
+  }
+  
+}
 
-  <div id="loginScreen">
-    <h2>Pantalla de Ingreso</h2>
-    <!-- Formulario de ingreso -->
-    <form id="loginForm">
-      <!-- Campos de ingreso -->
-      <input type="text" id="username" placeholder="Usuario" required>
-      <input type="password" id="password" placeholder="Contraseña" required>
-      <button type="submit">Ingresar</button>
-    </form>
-  </div>
 
-  <div id="orderScreen" style="display: none;">
-    <h2>Pantalla de Pedido</h2>
-    <!-- Formulario de pedido -->
-    <form id="orderForm">
-      <h3>Forma de entrega</h3>
-      <input type="radio" name="deliveryOption" value="local" required> Retiro en local
-      <input type="radio" name="deliveryOption" value="domicilio" required> Envío a domicilio
+// Analizar situación botones dia y hora////////////////////////////////////
 
-      <h3>Datos de envío</h3>
-      <input type="text" id="address" placeholder="Dirección">
-      <input type="text" id="phone" placeholder="Teléfono">
+const fecha = () =>{
+  // crea un nuevo objeto `Date`, obtengo fecha y hora actual
+var today = new Date();
+let dia = today.getDay()
+let hora = today.getHours()
+let minutos = today.getMinutes()
 
-      <h3>Forma de pago</h3>
-      <input type="radio" name="paymentOption" value="efectivo" required> Efectivo
-      <input type="radio" name="paymentOption" value="mercadoPago" required> Mercado Pago
 
-      <button type="submit">Confirmar Pedido</button>
-    </form>
-  </div>
-
-  <div id="orderSummary" style="display: none;">
-    <h2>Resumen del Pedido</h2>
-    <div id="items"></div>
-    <div id="deliveryInfo"></div>
-    <div id="paymentInfo"></div>
-    <div id="orderTotal"></div>
-    <button id="confirmOrder">Confirmar Pedido</button>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Verificar si el usuario ha ingresado
-      var isLoggedIn = false; // Variable para simular el estado de inicio de sesión
-
-      if (!isLoggedIn) {
-        // Redirigir al usuario a la pantalla de ingreso
-        document.getElementById("loginScreen").style.display = "block";
-      } else {
-        // Mostrar la pantalla del pedido
-        document.getElementById("orderScreen").style.display = "block";
+console.log("el dia es ",dia)
+console.log("La hora es" ,hora," con ",minutos," minutos")
+let botones = document.querySelectorAll(".botComprar")
+let aviso = document.getElementById("aviso")
+if(dia > 0 && dia <6){
+  //dia de semana de 20 a 00
+  if( hora >= 20  ){
+      if(hora <= 23 && minutos <= 59 ){
+          console.log("estamos abiertos")
+          aviso.style.display = "none";
       }
+  } else{
+      console.log("estamos cerrados")
+      // botones.forEach(elemento => elemento.disabled = true);
+      
+  }
+} else if ( dia == 7 || dia == 0){
+  //fin de semana de 11 a 15
+  if( hora >= 11  ){
+      if(hora <= 14 && minutos <= 59 ){
+          console.log("estamos abiertos")
+          aviso.style.display = "none";
+      }
+  } else{
+      console.log("estamos cerrados")
+      // botones.forEach(elemento => elemento.disabled = true);
+  }
+}
 
-      // Evento de envío del formulario de ingreso
-      document.getElementById("loginForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        // Realizar verificación de inicio de sesión aquí
 
-        // Mostrar la pantalla del pedido después del inicio de sesión
-        document.getElementById("loginScreen").style.display = "none";
-        document.getElementById("orderScreen").style.display = "block";
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+//Pintar la pagina principal con todos los objetos json
+
+const contenedorPro = document.querySelector("#contenedor-productos");
+
+const pintar = data =>{
+  const template = document.querySelector("#template-productos").content;
+  const fragment = document.createDocumentFragment();
+  //recorrer arreglo de objetos
+
+  data.forEach(element => {
+      template.querySelector("img").setAttribute("src",element.thumbnailUrl);
+      template.querySelector("h5").textContent = element.nombre;
+      template.querySelector("span").textContent = element.precio;
+      template.querySelector("button").dataset.id = element.id;
+
+      template.querySelector(".parra").textContent = element.decripcion;
+      template.querySelector(".ingr").textContent = element.ingredientes;
+
+      template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
+      template.querySelector(".collapse").setAttribute("id",element.idd)
+
+      
+      const clone = template.cloneNode(true)
+
+      fragment.appendChild(clone)
+  });
+  contenedorPro.appendChild(fragment)
+  
+}
+/////////////////////////////////////////////////////////
+
+//Botones menu platos
+const menu = document.querySelector(".menuCambio");
+let tipo = 3;
+const botTodo = document.querySelector("#todo")
+botTodo.addEventListener("click",()=>{
+  limpiarHtml(contenedorPro);
+  pintar(data1);
+  menu.innerHTML = "Completo"
+  asignarBotones(data1)
+})
+
+const botPri = document.querySelector("#principal")
+
+botPri.addEventListener("click",()=>{
+  limpiarHtml(contenedorPro);
+  tipo = 1;
+  pintarSele(data1);
+  menu.innerHTML = "Principal"
+  asignarBotones(data1)
+
+})
+
+const botGuar = document.querySelector("#guarnicion")
+botGuar.addEventListener("click",()=>{
+  limpiarHtml(contenedorPro);
+  tipo = 2;
+  pintarSele(data1)
+  menu.innerHTML = "Guarniciones"
+  asignarBotones(data1)
+})
+/////////////////////////////////////////////////////////////
+
+
+//Pintar la pagina principal principal y guarnicion
+
+
+const pintarSele = data1 =>{
+  const template = document.querySelector("#template-productos").content;
+  const fragment = document.createDocumentFragment();
+  
+  //recorrer arreglo de objetos
+  if(tipo == 1){
+      data1.forEach(element => {
+          if(element.principal == true){
+              template.querySelector("img").setAttribute("src",element.thumbnailUrl);
+              template.querySelector("h5").textContent = element.nombre;
+              template.querySelector("span").textContent = element.precio;
+              template.querySelector("button").dataset.id = element.id;
+      
+              template.querySelector(".parra").textContent = element.decripcion;
+              template.querySelector(".ingr").textContent = element.ingredientes;
+      
+              template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
+              template.querySelector(".collapse").setAttribute("id",element.idd)
+      
+              
+              const clone = template.cloneNode(true)
+      
+              fragment.appendChild(clone)} 
+      });
+      contenedorPro.appendChild(fragment)
+  } else if (tipo == 2){
+      
+      data1.forEach(element => {
+          if(element.principal != true){
+              template.querySelector("img").setAttribute("src",element.thumbnailUrl);
+              template.querySelector("h5").textContent = element.nombre;
+              template.querySelector("span").textContent = element.precio;
+              template.querySelector("button").dataset.id = element.id;
+      
+              template.querySelector(".parra").textContent = element.decripcion;
+              template.querySelector(".ingr").textContent = element.ingredientes;
+      
+              template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
+              template.querySelector(".collapse").setAttribute("id",element.idd)
+      
+              
+              const clone = template.cloneNode(true)
+      
+              fragment.appendChild(clone)} 
       });
 
-      // Evento de envío del formulario de pedido
-      document.getElementById("orderForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        // Procesar el pedido aquí
+      contenedorPro.appendChild(fragment)
+  }
+  
+  
+  
+}
 
-        // Mostrar el resumen del pedido
-        document.getElementById("orderScreen").style.display = "none";
-        document.getElementById("orderSummary").style.display = "block";
+//buscador
 
-        // Calcular tiempo estimado de entrega
-        var estimatedTime = calculateEstimatedTime(); // Función a implementar
+document.addEventListener('keyup', e =>{
+  if(e.target.matches('#buscador')){
+      document.querySelectorAll('.articulo').forEach(plato =>{
+          plato.textContent.toLowerCase().includes(e.target.value)
+          ? plato.classList.remove('filtro')
+          : plato.classList.add('filtro');
 
-        // Mostrar el tiempo estimado de entrega
-        document.getElementById("orderSummary").innerHTML += "<div>Tiempo estimado de entrega: " + estimatedTime + " minutos</div>";
-      });
+      })
+  }
+})
 
-      // Evento de confirmación del pedido
-      document.getElementById("confirmOrder").addEventListener("click", function() {
-        // Descontar del stock de ingredientes
-        updateStock(); // Función a implementar
+//limpiar pantalla
+const limpiarHtml = (contenedor) =>{
+  while(contenedor.firstChild){
+      contenedor.removeChild(contenedor.firstChild);
+  }
+}
 
-        // Asignar el estado "A confirmar" al pedido
-        assignOrderStatus(); // Función a implementar
+///////////////////////////////////////////////////////////
 
-        // Realizar el pago si se eligió Mercado Pago
-        var paymentOption = document.querySelector('input[name="paymentOption"]:checked').value;
-        if (paymentOption === "mercadoPago") {
-          makeMercadoPagoPayment(); // Función a implementar
-        }
-      });
-    });
 
-    // Función para calcular el tiempo estimado de entrega
-    function calculateEstimatedTime() {
-      var itemTimes = [15, 20, 25]; // Ejemplo de tiempos estimados de los productos
-      var maxItemTime = Math.max(...itemTimes);
-
-      var cookingTimes = [30, 40, 50]; // Ejemplo de tiempos estimados de los pedidos en cocina
-      var maxCookingTime = Math.max(...cookingTimes);
-
-      var deliveryTime = 10; // Tiempo adicional de entrega para envío a domicilio
-
-      return maxItemTime + maxCookingTime + (deliveryTime * (document.querySelector('input[name="deliveryOption"]:checked').value === "domicilio" ? 1 : 0));
-    }
-
-    // Resto de las funciones a implementar
-
-    function updateStock() {
-      // Implementar la lógica para descontar del stock de ingredientes
-    }
-
-    function assignOrderStatus() {
-      // Implementar la lógica para asignar el estado "A confirmar" al pedido
-    }
-
-    function makeMercadoPagoPayment() {
-      // Implementar la lógica para realizar el pago con Mercado Pago
-    }
-  </script>
-</body>
-</html>
