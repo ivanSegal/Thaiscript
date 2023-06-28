@@ -13,12 +13,20 @@ const fetchData = async () =>{
       pintarSele(data1)
       fecha()
       asignarBotones(data)
-      
+   
+
   } catch (error) {
       console.log(error)
   }
   
 }
+
+
+
+
+
+
+
 
 
 // Analizar situación botones dia y hora////////////////////////////////////
@@ -81,7 +89,15 @@ const pintar = data =>{
       template.querySelector("h5").textContent = element.nombre;
       template.querySelector("span").textContent = element.precio;
       template.querySelector("button").dataset.id = element.id;
-
+      //////////////////////////////Prueba de stock/////////////////////
+      if(element.id == 5){
+        template.querySelector("button").style.display = "none";
+        template.querySelector("#stock").style.display = "";
+      }else{
+        template.querySelector("button").style.display = "";
+        template.querySelector("#stock").style.display = "none";
+      }
+      /////////////////////////////Fin Prueba de stock/////////////////////////////////////
       template.querySelector(".parra").textContent = element.decripcion;
       template.querySelector(".ingr").textContent = element.ingredientes;
 
@@ -152,7 +168,18 @@ const pintarSele = data1 =>{
       
               template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
               template.querySelector(".collapse").setAttribute("id",element.idd)
-      
+            
+               //////////////////////////////Prueba de stock/////////////////////
+      if(element.id == 5){
+        template.querySelector("button").style.display = "none";
+        template.querySelector("#stock").style.display = "";
+      }else{
+        template.querySelector("button").style.display = "";
+        template.querySelector("#stock").style.display = "none";
+      }
+      /////////////////////////////Fin Prueba de stock/////////////////////////////////////
+
+
               
               const clone = template.cloneNode(true)
       
@@ -173,7 +200,19 @@ const pintarSele = data1 =>{
       
               template.querySelector(".colbu").setAttribute("data-bs-target",element.target);
               template.querySelector(".collapse").setAttribute("id",element.idd)
-      
+            
+               //////////////////////////////Prueba de stock/////////////////////
+      if(element.id == 5){
+        template.querySelector("button").style.display = "none";
+        template.querySelector("#stock").style.display = "";
+      }else{
+        template.querySelector("button").style.display = "";
+        template.querySelector("#stock").style.display = "none";
+      }
+      /////////////////////////////Fin Prueba de stock/////////////////////////////////////
+
+
+
               
               const clone = template.cloneNode(true)
       
