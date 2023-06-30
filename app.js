@@ -207,6 +207,146 @@ const limpiarHtml = (contenedor) =>{
   }
 }
 
-///////////////////////////////////////////////////////////
+/////////////////////////CARRITO DE COMPRAS//////////////////////////////////////////
 
 
+//Mostrar carrito
+const mostCarro = document.querySelector(".botCarrito")
+const vistaCarro = document.querySelector(".carrito")
+var mostrandoCarro = false
+mostCarro.addEventListener("click",()=>{
+    if (mostrandoCarro == false) {
+        vistaCarro.style.display = "flex"
+        mostrandoCarro = true
+    }
+    else {
+        vistaCarro.style.display = "none"
+        mostrandoCarro = false
+    }
+    
+})
+
+
+//Cerrar carrito
+const butCerrar = document.querySelector(".butonCerrar")
+butCerrar.addEventListener("click",()=>{
+    vistaCarro.style.display = "none"
+})
+
+
+//Cuando el usuario clickea un botón, se guarda el id del elemento clickeado
+let arrayCarrito = [];
+function agregarElemento(id) {
+    arrayCarrito.push(id)
+    console.log(arrayCarrito)
+    dibujarElementoCarrito(arrayCarrito)
+}
+
+
+//
+function dibujarElementoCarrito(arrayCarrito) {
+    let carritoLength = arrayCarrito.length
+
+//
+let datosProductos = {};
+fetch("comidas.json")
+    .then(function(resp) {
+        return resp.json();
+    })
+    .then(function(data) {
+        datosProductos = data;
+        mostrarObj()
+    });
+
+//
+let mostrarObj = function() {
+    for (let prop in datosProductos) {
+        for(let i = 0; i < 6; i++) {
+            datosProductos[i].cantidad = 0
+        }
+        console.log(datosProductos)
+        dibujo()
+    }
+}
+
+
+//
+function dibujo() {
+    let totalPrecio = 0
+    for(let i = 0; i < carritoLength; i++) { //for para recorrer arrayCarrito
+                for(let j =  0; j < 6; j++) { //for para recorrer datosProductos
+                    if (arrayCarrito[i] == datosProductos[j].id) {
+                        datosProductos[j].cantidad++
+                        totalPrecio = totalPrecio + datosProductos[j].precio
+                    }
+                }
+    }
+    
+    for(let k = 0; k < 6; k++) {
+        let numeroFila = "fila-" + k
+        let k1 = k + 1
+        if (datosProductos[k].cantidad > 0) {
+            document.getElementById(numeroFila).innerHTML = 
+            '<img src="'+ datosProductos[k].thumbnailUrl + '" width="60" height="60">' +
+            '<td>' + datosProductos[k].nombre + '</td>' +
+            '<td>' + datosProductos[k].cantidad + '</td>' +
+            '<td>' + '<button class="btn btn-info btn-sm" onclick="agregarElemento(' + k1 + ');"> + </button> <button class="btn btn-danger btn-sm" onclick="quitarElemento(' + k1 + ');"> - </button>' + '</td>' +
+            '<td>' + datosProductos[k].precio * datosProductos[k].cantidad + '</td>';
+        }
+    }
+
+    document.getElementById("fila-final").innerHTML =
+    '<td>' + '<button class="btn btn-info btn-sm" onclick="#"> CONFIRMAR PEDIDO </button>' + '</td>' +
+    '<td></td>' +
+    '<td></td>' +
+    '<td>' + '<button class="btn btn-danger btn-sm" onclick="vaciarCarrito()"> VACIAR </button>' + '</td>' +
+    '<td> Subtotal: ' + totalPrecio + '</td>';
+
+    let filasRevisadas = 0
+    for(let l = 0; l < 6; l++) {
+        let numeroFila = "fila-" + l
+        if (datosProductos[l].cantidad == 0) {
+            document.getElementById(numeroFila).innerHTML = '';
+            filasRevisadas++
+        }
+        if (filasRevisadas >= 6) {
+            document.getElementById("fila-final").innerHTML = '';
+        }
+    }
+}
+}
+
+
+//
+function quitarElemento(id) {
+    let carritoLength = arrayCarrito.length
+    let position = 0
+
+    do {
+        if(arrayCarrito[position] == id) {
+            delete arrayCarrito[position]
+            position = carritoLength
+
+        }
+        else {
+            position++
+        }
+        
+    }while(position != carritoLength)
+    dibujarElementoCarrito(arrayCarrito)
+}
+
+
+//
+function vaciarCarrito() {
+    arrayCarrito = []
+
+    for(i = 0; i < 6; i++) {
+        let numeroFila = "fila-" + i
+        document.getElementById(numeroFila).innerHTML = '';
+    }
+    document.getElementById("fila-final").innerHTML = '';
+}
+
+
+/////////////////////////FIN DEL CARRITO DE COMPRAS//////////////////////////////////////////
