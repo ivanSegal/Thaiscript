@@ -26,15 +26,30 @@ private String cantidad;
 
 @Column(name = "subtotal")
 private String subtotal;
-
+/*
 @Column(name = "idproducto")
 private int id_producto;
 
+
 @Column(name = "idcliente")
 private int  id_cliente;
-
+*/
 @Column(name = "fechapedido")
 private Date fechapedido;
+
+
+@OneToOne(cascade=CascadeType.ALL)
+@JoinColumn(name= "fk_cliente")
+private Cliente cliente;
+
+@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+@JoinTable(
+		name="pedido_producto",
+		joinColumns= @JoinColumn(name= "pedido_id"),
+		inverseJoinColumns = @JoinColumn(name= "producto_id"))
+private List<Producto> productos = new ArrayList<Producto>;
+
+
 
     //  @Column(name = "idhistorial" )
     // private int  id_historial;
