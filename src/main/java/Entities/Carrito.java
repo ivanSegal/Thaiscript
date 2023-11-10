@@ -21,7 +21,7 @@ public class Carrito {
 
     @Column(name = "idcliente") //usuario
     private int idCliente;
-
+    //carrito onetomany
     @OneToMany(mappedBy="carrito", cascade = CascadeType.PERSIST)
     private List<DetallePedido> detalle = new ArrayList<DetallePedido>();
 
