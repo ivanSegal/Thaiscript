@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -17,11 +19,13 @@ public class Carrito {
     @Column(name = "idcarrito")
     private int idCarrito;
 
-    @Column(name = "idcliente")
+    @Column(name = "idcliente") //usuario
     private int idCliente;
 
-    //Onetomany
-    @Column(name = "idproducto")
+    @OneToMany(mappedBy="carrito", cascade = CascadeType.PERSIST)
+    private List<DetallePedido> detalle = new ArrayList<DetallePedido>();
+
+    @Column(name = "idproducto") //producto
     private int idProducto;
 
     @Column(name="fecha", length = 45)
