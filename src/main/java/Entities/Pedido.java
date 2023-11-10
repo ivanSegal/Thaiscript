@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -42,12 +44,12 @@ private Date fechapedido;
 @JoinColumn(name= "fk_cliente")
 private Cliente cliente;
 
-@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+@OneToMany(cascade = CascadeType.ALL) // orphanRemoval=true
 @JoinTable(
 		name="pedido_producto",
 		joinColumns= @JoinColumn(name= "pedido_id"),
 		inverseJoinColumns = @JoinColumn(name= "producto_id"))
-private List<Producto> productos = new ArrayList<Producto>;
+private List<Producto> productos = new ArrayList<Producto>();
 
 
 

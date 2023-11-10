@@ -20,6 +20,7 @@ public class Carrito {
     @Column(name = "idcliente")
     private int idCliente;
 
+    //Onetomany
     @Column(name = "idproducto")
     private int idProducto;
 
