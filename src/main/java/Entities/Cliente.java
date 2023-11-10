@@ -16,7 +16,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column( name = "idCliente")
-    private int idCliente;
+    private Long idCliente;
 
     @Column( name="Nombre", length = 45)
     private String nombre;
@@ -33,4 +33,13 @@ public class Cliente {
     @Column(name = "FechadeRegistro", length = 45)
     private String fechaRegistro;
 
+    //Relación OneToOne con HistorialPedidos
+    @OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "fk_historialPedidos")
+    private HistorialPedidos historialPedidos;
+
+    //No sé si la relación debe ser bidireccional o si se volverá ManyToOne, así que comento -Nick
+    //Relación Bidireccional OneToOne con Pedido
+    //@OneToOne(mappedBy = "cliente")
+    //private Pedido pedido;
 }
