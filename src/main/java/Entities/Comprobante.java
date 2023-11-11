@@ -15,11 +15,16 @@ public class Comprobante {
     @Id
     @Column(name = "idcomprobante")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idComprobante;
-    @Column(name = "idpedido")
-    private int idPedido;
+    private Long idComprobante;
+
+    // @Column(name = "idpedido")
+    // private Long idPedido;
+
     @Column(name = "detalleproductos")
     private String detalleProductos;
     @Column(name = "informaciondefacturacion")
     private String informacionFacturacion;
+    
+    
+
 }

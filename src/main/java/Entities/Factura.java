@@ -15,13 +15,13 @@ public class Factura {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "idFactura")
-   private int idFactura;
+   private Long idFactura;
 
    @Column(name = "informacionFacturacion", length = 45)
    private String detalleFactura;
 
    @Column(name = "idpedido")
-   private int idPedido;
+   private Long idPedido;
 
    @Column(name = "detalleProductos")
    private String detalleProductos;

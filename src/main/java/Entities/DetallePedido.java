@@ -15,9 +15,9 @@ public class DetallePedido {
     @Id
     @Column(name = "idcomprobante")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idComprobante;
+    private Long idComprobante;
     @Column(name = "idpedido")
-    private int idPedido;
+    private Long idPedido;
     
     //Esto agregue
     @ManyToOne(cascade = CascadeType.PERSIST)

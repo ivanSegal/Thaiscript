@@ -18,7 +18,7 @@ public class Pedido {
     @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "idpedido" )
-  private int  id_pedido;
+  private Long  id_pedido;
 
 @Column(name = "estadopedido")
 private  String estadoPedido;
@@ -51,10 +51,11 @@ private Cliente cliente;
 		inverseJoinColumns = @JoinColumn(name= "producto_id"))
 private List<Producto> productos = new ArrayList<Producto>();
 
+@OneToMany(cascade = CascadeType.ALL)
+@JoinTable(
+name="pedido_comprobante",
+		joinColumns= @JoinColumn(name= "pedido_id"),
+		inverseJoinColumns = @JoinColumn(name= "comprobante_id"))
+private List<Comprobante> comprobantes = new ArrayList<Comprobante>();
 
-
-    //  @Column(name = "idhistorial" )
-    // private int  id_historial;
-//  @Column(name = "")
-//    private int  id_detallePedido;
 }

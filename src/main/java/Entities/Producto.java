@@ -19,10 +19,10 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idproducto")
-    private int idProducto;
+    private Long idProducto;
 
     @Column(name = "idcliente")
-    private int idCliente;
+    private Long idCliente;
 
     @Column(name = "idcarrito")
     private int idCarrito;

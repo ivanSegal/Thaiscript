@@ -17,16 +17,16 @@ public class Carrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcarrito")
-    private int idCarrito;
+    private Long idCarrito;
 
     @Column(name = "idcliente") //usuario
-    private int idCliente;
+    private Long idCliente;
     //hardcarrito onetomany
     @OneToMany(mappedBy="carrito", cascade = CascadeType.PERSIST)
     private List<DetallePedido> detalle = new ArrayList<DetallePedido>();
 
     @Column(name = "idproducto") //producto
-    private int idProducto;
+    private Long idProducto;
 
     @Column(name="fecha", length = 45)
     private String fecha;
