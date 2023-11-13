@@ -1,7 +1,7 @@
-package Controllers;
+package com.example.spring.Controllers;
 
-import Entities.Categoria;
-import Services.CategoriaService;
+import com.example.spring.Entities.Categoria;
+import com.example.spring.Services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

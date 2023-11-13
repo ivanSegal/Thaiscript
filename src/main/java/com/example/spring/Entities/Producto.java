@@ -1,9 +1,10 @@
-package Entities;
+package com.example.spring.Entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Table(name = "producto")
-public class Producto {
+public class Producto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

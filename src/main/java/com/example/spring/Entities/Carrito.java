@@ -1,4 +1,4 @@
-package Entities;
+package com.example.spring.Entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,8 +21,9 @@ public class Carrito {
 
     @Column(name = "idcliente") //usuario
     private Long idCliente;
+
     //hardcarrito onetomany
-    @OneToMany(mappedBy="carrito", cascade = CascadeType.PERSIST)
+    @OneToMany( cascade = CascadeType.PERSIST)//mappedBy="carrito" . Hace falta agragar un atributo carritoen DatallePedido, bidireccional
     private List<DetallePedido> detalle = new ArrayList<DetallePedido>();
 
     @Column(name = "idproducto") //producto

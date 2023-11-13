@@ -1,9 +1,10 @@
-package Entities;
+package com.example.spring.Entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Categoria {
+public class Categoria implements Serializable {
     @Id
     @Column(name = "idcategoria")
     @GeneratedValue(strategy = GenerationType.AUTO)

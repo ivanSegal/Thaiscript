@@ -1,7 +1,7 @@
-package Services;
+package com.example.spring.Services;
 
-import Entities.Categoria;
-import Repositories.CategoriaRepository;
+import com.example.spring.Entities.Categoria;
+import com.example.spring.Repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
