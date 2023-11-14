@@ -1,9 +1,10 @@
 package com.example.spring.Entities;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "cliente")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente {
+public class Cliente implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column( name = "idCliente")
@@ -35,7 +36,7 @@ public class Cliente {
 
     //Relación OneToOne con HistorialPedidos
     @OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "fk_historialPedidos")
+    @JoinColumn(name = "fk_historialPedidos")
     private HistorialPedidos historialPedidos;
 
     //No sé si la relación debe ser bidireccional o si se volverá ManyToOne, así que comento -Nick
