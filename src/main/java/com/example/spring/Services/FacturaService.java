@@ -55,9 +55,8 @@ public class FacturaService implements BaseService<Factura>{
     public Factura update(Long id, Factura entity) throws Exception {
         try {
             Optional<Factura> entityOptional = facturaRepository.findById(id);
-            Factura categoria = entityOptional.get();
-           // categoria= categoriaRepository.save(categoria);
-            return facturaRepository.save(categoria);
+            Factura factura = entityOptional.get();
+            return facturaRepository.save(entity);
         }catch (Exception e){
         throw  new Exception(e.getMessage());
         }

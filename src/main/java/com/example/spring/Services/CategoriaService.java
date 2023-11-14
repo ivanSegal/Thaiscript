@@ -57,7 +57,7 @@ public class CategoriaService implements BaseService<Categoria>{
             Optional<Categoria> entityOptional = categoriaRepository.findById(id);
             Categoria categoria = entityOptional.get();
            // categoria= categoriaRepository.save(categoria);
-            return categoriaRepository.save(categoria);
+            return categoriaRepository.save(entity);
         }catch (Exception e){
         throw  new Exception(e.getMessage());
         }

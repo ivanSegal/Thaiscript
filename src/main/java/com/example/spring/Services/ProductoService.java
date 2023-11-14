@@ -58,7 +58,7 @@ public class ProductoService implements BaseService<Producto>{
 		try {
 			Optional<Producto> entityOptional = productoRepository.findById(id);
 			Producto producto = entityOptional.get();
-			producto = productoRepository.save(producto);
+			producto = productoRepository.save(entity);
 			return producto;
 		} catch(Exception e) {
 			throw new Exception(e.getMessage());	
