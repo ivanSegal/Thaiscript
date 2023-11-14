@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Table(name = "historialPedidos")
-public class HistorialPedidos {
+public class HistorialPedidos implements Serializable{
 
     @Id
     @Column(name = "idpedido")
