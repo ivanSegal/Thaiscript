@@ -1,0 +1,119 @@
+html{
+    box-sizing: border-box;
+    /*1rem = 10px*/
+   
+}
+body{
+    
+    overflow-x: hidden;
+}
+.header{
+    display: flex;
+    max-width: 100%;
+    height: 80vh;
+    position: absolute;
+
+}
+.nav{
+    position: fixed;
+}
+
+@media (max-width: 640px) {
+    .container-fluid .c{
+        width: 25vh;
+        /* display: none; */
+    }
+  }
+
+#colorMenu{
+    width: 100%;
+    background-color:#ffd632 ;
+}
+#template-productos{
+    display:none;
+}
+a:link, a:visited, a:active{
+    text-decoration: none;
+    color: #323230;
+}
+.btn{
+    color: #ffd632;
+}
+.colbu{
+    border-radius: 15px;
+    
+}
+#contenedor-productos{
+    list-style: none;
+}
+.filtro{
+    display: none;
+}
+.corteprin, .corteguar{
+    width: 100%;
+    height: 80px;
+    background-color: #ffd632;
+    margin-top: 20px;
+    background-image: url("./img/thaiscript.png");
+}
+
+.carousel > img{
+    object-fit: scale-down;
+    height: 50vh;
+    width: 100%;
+}
+.botComprar{
+    background-color: #323230;
+    color: #ffd632;
+    border-radius: 5px;
+}
+.botComprar:hover{
+    color: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 4px 16px #ffd632;
+  transition: all 0.2s ease;
+}
+#aviso{
+    border-radius: 3px;
+     border: solid #ffd632;
+     display:none; /* dejar en "" para que funcione segùn la hora*/
+}
+
+
+
+.carrito{
+    width: 80%;
+    background-color: #323230;
+    border-radius:15px;
+    color: aliceblue;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    position: fixed;
+    overflow: auto;
+    z-index: 9;
+    top: 12vh;
+    scrollbar-color: none;
+}
+td, th {
+    color: #ffd632
+}
+
+.botCarrito{
+    font-size: 30px;
+    text-decoration: none;
+    border-radius:15px;
+    outline:none;
+}
+
+.numCarrito{
+    font-size: 12px;
+    padding: 4px;
+    /* top: 37px;
+    right: 20px; */
+    position: absolute;
+    color: aliceblue;
+    border-radius:50%;
+    background-color: red;
+    display:none
+}

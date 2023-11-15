@@ -3,6 +3,7 @@ package com.example.spring.Entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
 import javax.persistence.*;
 
@@ -11,10 +12,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Table(name = "detallePedido")
-public class DetallePedido {
+public class DetallePedido implements Serializable {
     @Id
     @Column(name = "idcomprobante")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idComprobante;
 
     @Column(name = "idpedido")

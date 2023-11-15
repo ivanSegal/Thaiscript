@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Table(name = "pedido")
-public class Pedido {
+public class Pedido implements Serializable {
     @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "idpedido" )
