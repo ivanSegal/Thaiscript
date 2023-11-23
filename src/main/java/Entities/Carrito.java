@@ -10,6 +10,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Getter
+@Setter
 @Table(name = "carrito")
 public class Carrito {
     @Id
