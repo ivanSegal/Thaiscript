@@ -36,4 +36,6 @@ public class Carrito {
 
     @Column(name = "subtotal", length = 45)
     private String subtotal;
+    @OneToMany(mappedBy="carrito", cascade = CascadeType.PERSIST)
+    private List<Producto> detalle = new ArrayList<Producto>();
 }
